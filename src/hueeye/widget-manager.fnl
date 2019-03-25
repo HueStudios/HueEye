@@ -2,9 +2,6 @@
 (local utils (require :utils))
 (local ID-LENGTH 8)
 (var widgets {})
-(var depth-sorted-widgets {})
-(var lowest-depth 999999)
-(var highest-depth -999999)
 
 (lambda verify-id [id]
   (var to-return true)
@@ -22,43 +19,14 @@
   (when (= nil (widget.get-id))
     (local this-widget-id (generate-valid-id))
     (tset widgets this-widget-id widget)
-    (when (> (widget.get-depth) highest-depth)
-      (set highest-depth (widget.get-depth)))
-    (when (< (widget.get-depth) lowest-depth)
-      (set lowest-depth (widget.get-depth)))
-    (var this-depth-table (. depth-sorted-widgets (widget.get-depth)))
-    (when (not this-depth-table)
-      (tset depth-sorted-widgets (widget.get-depth) {}))
-    (set this-depth-table (. depth-sorted-widgets (widget.get-depth)))
-    (tset this-depth-table this-widget-id widget)
     this-widget-id))
 
 (lambda widget-manager.remove-widget [widget]
   (local this-widget-id (widget.get-id))
   (when (. widgets this-widget-id)
     (tset widgets this-widget-id nil)
-    (local this-depth-table (. depth-sorted-widgets (widget.get-depth)))
-    (tset this-depth-table (widget.get-id) nil)
-    (when (= (# this-depth-table) 0)
-      (tset depth-sorted-widgets (widget.get-depth) nil))
-    (when (= (widget.get-depth) lowest-depth)
-      (var solved false)
-      (for [i lowest-depth highest-depth 1]
-        (when (not solved)
-          (when (. depth-sorted-widgets i)
-            (set lowest-depth i)
-            (set solved true)))
-        (when (not solved)
-          (set lowest-depth 999999))))
-    (when (= (widget.get-depth) highest-depth)
-      (var solved false)
-      (for [i highest-depth lowest-depth -1]
-        (when (not solved)
-          (when (. depth-sorted-widgets i)
-            (set highest-depth i)
-            (set solved true)))
-        (when (not solved)
-          (set highest-depth -999999))))))
+    (each [k v (pairs (widget.get-children))]
+      (widget-manager.remove-widget v))))
 
 (lambda widget-manager.add-to-pipeline [function])
 

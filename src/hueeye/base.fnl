@@ -1,16 +1,11 @@
 (local widget-manager (require :widget-manager))
 (lambda base [parent tags]
-  (var base-widget {:_parent nil :_children nil :_id nil :_depth 0})
+  (var base-widget {:_parent nil :_children nil :_id nil})
   (fn base-widget.get-parent []
     base-widget._parent)
-  (lambda base-widget.set-depth [depth]
-    (set base-widget._depth depth))
-  (fn base-widget.get-depth []
-    base-widget._depth)
   (lambda base-widget.set-parent [parent]
     (set base-widget._parent parent)
-    (: (base-widget.get-parent) :add-child base-widget)
-    (base-widget.set-depth (+ 1 (: (base-widget.get-parent) :get-depth))))
+    (: (base-widget.get-parent) :add-child base-widget))
   (lambda base-widget.set-children [children]
     (set base-widget._children children))
   (fn base-widget.get-children []
