@@ -1,6 +1,6 @@
 (local widget-manager (require :widget-manager))
-(lambda base [parent tags]
-  (var base-widget {:_parent nil :_children nil :_id nil})
+(fn base [?parent]
+  (var base-widget {:_parent nil :_children {} :_id nil})
   (fn base-widget.get-parent []
     base-widget._parent)
   (lambda base-widget.set-parent [parent]
@@ -18,5 +18,9 @@
     (tset (base-widget.get-children) (child.get-id) child))
   (lambda base-widget.remove-child [child]
     (tset (base-widget.get-children) (child.get-id) nil))
-  (base-widget.set-id (widget-manager.add-widget base-widget))
+  (when (not (= parent widget-manager))
+    (if ?parent
+      (base-widget.set-parent ?parent)
+      (base-widget.set-parent (widget-manager.get-master-widget)))
+    (base-widget.set-id (widget-manager.add-widget base-widget)))
   base-widget)

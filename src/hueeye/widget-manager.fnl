@@ -1,10 +1,13 @@
 (local widget-manager {})
 (local utils (require :utils))
+(local base (require :base))
 
 ;; Private
 
 (local ID-LENGTH 8)
-(var widgets {})
+(local master-widget (base widget-manager))
+(master-widget.set-id :00000000)
+(var widgets {:00000000 master-widget})
 
 (var widget-pipeline {})
 
@@ -38,6 +41,10 @@
 
 ;; Public
 
+(fn widget-manager.get-master-widget []
+  (local master-widget (. widgets :00000000))
+  master-widget)
+
 (lambda widget-manager.add-widget [widget]
   (when (= nil (widget.get-id))
     (local this-widget-id (generate-valid-id))
@@ -51,7 +58,11 @@
     (each [k v (pairs (widget.get-children))]
       (widget-manager.remove-widget v))))
 
-(lambda widget-manager.add-to-pipeline [function]
-  (tset widget-pipeline (+ 1 (# widget-pipeline)) function))
+(lambda widget-manager.add-to-pipeline [pipeline-step]
+  (tset widget-pipeline (+ 1 (# widget-pipeline)) pipeline-step))
 
-(fn widget-manager.widget-pipeline [])
+(fn widget-manager.widget-pipeline []
+  (each [k v (ipairs widget-pipeline)]
+    (if v.top-down
+      (run-on-children-top-down (widget-manager.get-master-widget) v)
+      (run-on-children-down-top (widget-manager.get-master-widget) v))))
