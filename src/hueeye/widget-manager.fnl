@@ -32,7 +32,8 @@
   (each [k v (pairs (widget.get-children))]
     (when (not stop)
       (set stop (or stop (run-on-children v to-be-run)))))
-  (set stop (or stop (to-be-run widget)))
+  (when (not stop)
+    (set stop (or stop (to-be-run widget))))
   stop)
 
 ;; Public
