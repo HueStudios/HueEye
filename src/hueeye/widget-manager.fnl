@@ -1,11 +1,11 @@
 (local widget-manager {})
-(local utils (require :utils))
-(local base (require :base))
+(local utils (require :hueeye.utils))
+(local base (require :hueeye.base))
 
 ;; Private
 
 (local ID-LENGTH 8)
-(local master-widget (base widget-manager))
+(local master-widget (base {:master true}))
 (master-widget.set-id :00000000)
 (var widgets {:00000000 master-widget})
 
@@ -66,3 +66,4 @@
     (if v.top-down
       (run-on-children-top-down (widget-manager.get-master-widget) v)
       (run-on-children-down-top (widget-manager.get-master-widget) v))))
+widget-manager

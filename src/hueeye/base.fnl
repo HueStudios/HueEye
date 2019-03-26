@@ -1,4 +1,3 @@
-(local widget-manager (require :widget-manager))
 (fn base [?parent]
   (var base-widget {:_parent nil :_children {} :_id nil})
   (fn base-widget.get-parent []
@@ -18,7 +17,9 @@
     (tset (base-widget.get-children) (child.get-id) child))
   (lambda base-widget.remove-child [child]
     (tset (base-widget.get-children) (child.get-id) nil))
-  (when (not (= parent widget-manager))
+
+  (when (or (not ?parent) (not ?parent.master))
+    (local widget-manager (require :hueeye.widget-manager))
     (if ?parent
       (base-widget.set-parent ?parent)
       (base-widget.set-parent (widget-manager.get-master-widget)))
