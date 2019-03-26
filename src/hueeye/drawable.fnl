@@ -1,9 +1,17 @@
 (local base (require :hueeye.base))
-(lambda drawable [x y ?parent]
+(lambda drawable [x y ?parent ?color]
   (local drawable-widget (base ?parent))
 
   (set drawable-widget._x x)
   (set drawable-widget._y y)
+
+  (set drawable-widget._color ?color)
+
+  (lambda drawable-widget.set-color [color]
+    (set drawable-widget._color color))
+
+  (fn drawable-widget.get-color []
+    drawable-widget._color)
 
   (lambda drawable-widget.set-x [x]
     (set drawable-widget._x x))

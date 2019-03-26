@@ -1,6 +1,6 @@
 (local bound (require :hueeye.bound))
-(lambda rectangular [x y width height ?parent]
-  (local rectangular-widget (bound x y parent))
+(lambda rectangular [x y width height ?parent ?color]
+  (local rectangular-widget (bound x y parent ?color))
   (set rectangular-widget._width width)
   (set rectangular-widget._height height)
 
