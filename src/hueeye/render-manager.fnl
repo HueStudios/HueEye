@@ -1,12 +1,12 @@
-(local widget-manager (require :widget-manager))
-(local utils (require :utils))
+(local widget-manager (require :hueeye.widget-manager))
+(local utils (require :hueeye.utils))
 
 (local render-manager {})
 
-(fn draw-widget [widget]
+(fn render-manager.draw-widget [widget]
   (when widget.draw
     (widget.draw)))
 
-(widget-manager.add-to-pipeline utils.empty draw-widget utils.empty true)
+(widget-manager.add-to-pipeline utils.empty render-manager.draw-widget utils.empty true)
 
 render-manager

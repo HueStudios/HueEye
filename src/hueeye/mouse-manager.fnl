@@ -1,5 +1,5 @@
-(local widget-manager (require :widget-manager))
-(local utils (require :utils))
+(local widget-manager (require :hueeye.widget-manager))
+(local utils (require :hueeye.utils))
 (var mouse-manager {})
 (set mouse-manager.previous-mouse-x 0)
 (set mouse-manager.previous-mouse-y 0)
@@ -24,7 +24,7 @@
   (set mouse-manager.delta-mouse-y
     (- mouse-manager.current-mouse-y
        mouse-manager.previous-mouse-y))
-  (set mouse-manage.blocking-widget nil))
+  (set mouse-manager.blocking-widget nil))
 (fn mouse-manager.widget-step [widget]
   (when widget.is-clickable
     (when (not mouse-manager.blocking-widget)
@@ -112,6 +112,6 @@
   (set mouse-manager.previous-mouse-y mouse-manager.current-mouse-y)
   (set mouse-manager.previous-mouse-buttons mouse-manager.current-mouse-buttons))
 
-(widget-manager.add-to-pipeline before-widgets widget-step after-widgets false)
+(widget-manager.add-to-pipeline mouse-manager.before-widgets mouse-manager.widget-step mouse-manager.after-widgets false)
 
 mouse-manager
