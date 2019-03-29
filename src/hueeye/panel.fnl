@@ -1,0 +1,16 @@
+(local rectangular (require :hueeye.rectangular))
+(local color-scheme (require :hueeye.color-scheme))
+(fn panel [x y width height ?parent]
+  (local panel-color color-scheme.container)
+  (local panel-widget (rectangular x y width height ?parent panel-color))
+  (fn draw-panel []
+    (local w (panel-widget.get-width))
+    (local h (panel-widget.get-height))
+    (local x (panel-widget.get-global-x))
+    (local y (panel-widget.get-global-y))
+    (local color (panel-widget.get-color))
+    (color.set-to-draw)
+    (love.graphics.rectangle "fill" x y w h)
+    nil)
+  (panel-widget.add-before-draw draw-panel)
+  panel-widget)
