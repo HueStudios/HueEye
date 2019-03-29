@@ -1,0 +1,17 @@
+(lambda i-clickable [target-widget]
+  (when target-widget.is-inside?
+    (fn target-widget.on-global-mouse-down [gx gy x y button])
+    (fn target-widget.on-global-mouse-drag [gx gy x y button dx dy])
+    (fn target-widget.on-global-mouse-up [gx gy x y button])
+    (fn target-widget.on-global-mouse-enter [gx gy x y])
+    (fn target-widget.on-global-mouse-leave [gx gy x y])
+    (fn target-widget.on-global-mouse-hover [gx gy x y dx dy])
+    (fn target-widget.on-mouse-wheel [gx gy x y dx dy])
+    (fn target-widget.on-mouse-down [gx gy x y button])
+    (fn target-widget.on-mouse-drag [gx gy x y button dx dy])
+    (fn target-widget.on-mouse-up [gx gy x y button])
+    (fn target-widget.on-mouse-enter [gx gy x y])
+    (fn target-widget.on-mouse-leave [gx gy x y])
+    (fn target-widget.on-mouse-hover [gx gy x y dx dy])
+    (fn target-widget.on-mouse-wheel [gx gy x y dx dy])
+    (fn target-widget.handle-mouse [])))
