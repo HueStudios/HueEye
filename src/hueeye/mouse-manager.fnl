@@ -1,3 +1,5 @@
+(local widget-manager (require :widget-manager))
+(local utils (require :utils))
 (var mouse-manager {})
 (set mouse-manager.previous-mouse-x 0)
 (set mouse-manager.previous-mouse-y 0)
@@ -109,4 +111,7 @@
   (set mouse-manager.previous-mouse-x mouse-manager.current-mouse-x)
   (set mouse-manager.previous-mouse-y mouse-manager.current-mouse-y)
   (set mouse-manager.previous-mouse-buttons mouse-manager.current-mouse-buttons))
+
+(widget-manager.add-to-pipeline before-widgets widget-step after-widgets false)
+
 mouse-manager
