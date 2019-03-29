@@ -7,4 +7,5 @@
     (local this-character (. dictionary this-index))
     (set result (.. result this-character)))
   result)
+(fn utils.empty [])
 utils
