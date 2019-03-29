@@ -1,11 +1,12 @@
 (local widget-manager {})
 (local utils (require :hueeye.utils))
-(local base (require :hueeye.base))
+(local drawable (require :hueeye.drawable))
+(local color-scheme (require :hueeye.color-scheme))
 
 ;; Private
 
 (local ID-LENGTH 8)
-(local master-widget (base {:master true}))
+(local master-widget (drawable 0 0 {:master true} color-scheme.invisible))
 (master-widget.set-id :00000000)
 (var widgets {:00000000 master-widget})
 
@@ -49,6 +50,7 @@
   (when (= nil (widget.get-id))
     (local this-widget-id (generate-valid-id))
     (tset widgets this-widget-id widget)
+    (local master-widget (widget-manager.get-master-widget))
     this-widget-id))
 
 (lambda widget-manager.remove-widget [widget]

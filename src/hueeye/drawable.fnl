@@ -57,6 +57,7 @@
 
   (fn drawable-widget.draw []
     (each [k v (pairs (drawable-widget.get-children))]
+      (print (drawable-widget.get-id) k)
       (when v.draw
         (v.draw))))
 
