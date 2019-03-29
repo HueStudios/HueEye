@@ -54,9 +54,9 @@
     result)
 
 
-  (fn drawable-widget.draw []
-    (each [k v (pairs (drawable-widget.get-children))]
-      (when v.draw
-        (v.draw))))
+  (fn drawable-widget.draw [])
+    ;(each [k v (pairs (drawable-widget.get-children))]
+    ;  (when v.draw
+    ;    (v.draw))
 
   drawable-widget)
