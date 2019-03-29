@@ -29,5 +29,6 @@
     (local end-y (+ (rectangular-widget.get-global-y) (rectangular-widget.get-height)))
     (when (and (> x start-x) (< x end-x) (> y start-y) (< y end-y))
       (set result true))
+    ;(print start-x x end-x start-y y end-y result)
     result)
   rectangular-widget)
