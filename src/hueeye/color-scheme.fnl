@@ -5,5 +5,6 @@
 (set color-scheme.container (color 43 43 43 255))
 (set color-scheme.actionable-hover (color 60 60 60 255))
 (set color-scheme.actionable-drag (color 99 99 99 255))
+(set color-scheme.button (color 56 56 56 255))
 (set color-scheme.invisible (color 0 0 0 0))
 color-scheme
