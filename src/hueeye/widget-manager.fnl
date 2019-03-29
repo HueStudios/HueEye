@@ -51,7 +51,8 @@
     (local this-widget-id (generate-valid-id))
     (tset widgets this-widget-id widget)
     (local master-widget (widget-manager.get-master-widget))
-    this-widget-id))
+    (widget.set-id this-widget-id)
+    (widget.set-parent master-widget)))
 
 (lambda widget-manager.remove-widget [widget]
   (local this-widget-id (widget.get-id))

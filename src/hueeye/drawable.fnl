@@ -53,11 +53,9 @@
       (set result (+ (drawable-widget.get-y) (parent.get-global-y))))
     result)
 
-  (print drawable-widget.get-global-y)
 
   (fn drawable-widget.draw []
     (each [k v (pairs (drawable-widget.get-children))]
-      (print (drawable-widget.get-id) k)
       (when v.draw
         (v.draw))))
 
