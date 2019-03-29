@@ -13,5 +13,5 @@
     (fn target-widget.on-mouse-enter [gx gy x y])
     (fn target-widget.on-mouse-leave [gx gy x y])
     (fn target-widget.on-mouse-hover [gx gy x y dx dy])
-    (fn target-widget.on-mouse-wheel [gx gy x y dx dy])
-    (fn target-widget.handle-mouse [])))
+    (fn target-widget.on-mouse-wheel [gx gy x y dx dy]) 
+    (set target-widget.is-clickable true)))
