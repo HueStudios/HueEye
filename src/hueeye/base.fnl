@@ -3,7 +3,6 @@
   (fn base-widget.get-parent []
     base-widget._parent)
   (lambda base-widget.set-parent [parent]
-    (print (.. "Trying to set parent " (parent.get-id) " on " (base-widget.get-id)))
     (when (base-widget.get-parent)
       (local current-parent (base-widget.get-parent))
       (current-parent.remove-child base-widget))
@@ -19,9 +18,7 @@
     (set base-widget._id new-id))
   (lambda base-widget.add-child [child]
     (local widget-manager (require :hueeye.widget-manager))
-    (print (.. "Trying to add child " (child.get-id)))
     (when (not (= child (widget-manager.get-master-widget)))
-      (print (.. "Added child " (child.get-id)))
       (tset (base-widget.get-children) (child.get-id) child)))
   (lambda base-widget.remove-child [child]
     (tset (base-widget.get-children) (child.get-id) nil))

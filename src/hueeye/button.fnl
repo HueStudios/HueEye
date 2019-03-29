@@ -1,9 +1,9 @@
-(local i-actionable (require :i-actionable))
-(local rectangular (require :rectangular))
-(local color-scheme (require :color-scheme))
+(local i-actionable (require :hueeye.i-actionable))
+(local rectangular (require :hueeye.rectangular))
+(local color-scheme (require :hueeye.color-scheme))
 (lambda button [x y width height ?parent]
-  (local button-color color-scheme.button)
-  (local button-widget (rectangular x y width height button-color))
+  (local button-color color-scheme.button-color)
+  (local button-widget (rectangular x y width height ?parent button-color))
   (i-actionable button-widget)
   (fn draw-button []
     (local w (button-widget.get-width))
@@ -14,5 +14,5 @@
     (color.set-to-draw)
     (love.graphics.rectangle "fill" x y w h)
     nil)
-  (button-widget.add-before-draw draw-panel)
+  (button-widget.add-before-draw draw-button)
   button-widget)

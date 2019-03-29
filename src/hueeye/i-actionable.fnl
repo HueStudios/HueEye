@@ -1,7 +1,7 @@
-(local i-clickable (require :i-clickable))
-(local color-scheme (require :color-scheme))
+(local i-clickable (require :hueeye.i-clickable))
+(local color-scheme (require :hueeye.color-scheme))
 (fn [target-widget]
-  (when (not taget-widget.is-clickable)
+  (when (not target-widget.is-clickable)
     (i-clickable target-widget))
   (set target-widget._hover-color color-scheme.actionable-hover)
   (set target-widget._drag-color color-scheme.actionable-drag)
@@ -10,7 +10,7 @@
   (fn target-widget.get-hover-color []
     target-widget._hover-color)
   (lambda target-widget.set-drag-color [new-color]
-    (set taget-widget._drag-color new-color))
+    (set target-widget._drag-color new-color))
   (fn target-widget.get-idle-color []
     target-widget._color)
   (fn target-widget.get-drag-color []

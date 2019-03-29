@@ -4,7 +4,6 @@
 
   (set drawable-widget._x x)
   (set drawable-widget._y y)
-
   (set drawable-widget._color ?color)
 
   (lambda drawable-widget.set-color [color]
