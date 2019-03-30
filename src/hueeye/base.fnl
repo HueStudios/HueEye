@@ -26,6 +26,8 @@
   (when (or (not ?parent) (not ?parent.master))
     (local widget-manager (require :hueeye.widget-manager))
     (widget-manager.add-widget base-widget))
+  (print ?parent)
   (when (and ?parent (not ?parent.master))
+    (print "Hello")
     (base-widget.set-parent ?parent))
   base-widget)
