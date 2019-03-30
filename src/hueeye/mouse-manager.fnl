@@ -39,8 +39,6 @@
     (local delta-y mouse-manager.delta-mouse-y)
     (local is-inside? (widget.is-inside? global-x global-y))
     (local was-inside? (widget.is-inside? previous-x previous-y))
-    ;(print (.. "Stepping mouse management for widget " (widget.get-id)))
-    ;(print (.. "Inside? " (tostring is-inside?)))
     (local buttons mouse-manager.current-mouse-buttons)
     (local previous-buttons mouse-manager.previous-mouse-buttons)
     (local block mouse-manager.blocking-widget)

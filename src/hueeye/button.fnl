@@ -18,7 +18,7 @@
   (button-widget.add-before-draw draw-button)
   (when ?text
     (set button-widget._text-widget (text 0 0 width height ?text button-widget))
-    (print (button-widget._text-widget.get-id) (button-widget._text-widget._parent.get-id))
+    
     (fn button-widget.get-text-widget []
       button-widget._text-widget)
     (lambda button-widget.set-text-widget [new-text-widget]
