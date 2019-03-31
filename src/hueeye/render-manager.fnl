@@ -7,6 +7,6 @@
   (when widget.draw
     (widget.draw)))
 
-(widget-manager.add-to-pipeline utils.empty render-manager.draw-widget utils.empty true)
+(widget-manager.add-to-pipeline utils.empty render-manager.draw-widget utils.empty true false)
 
 render-manager

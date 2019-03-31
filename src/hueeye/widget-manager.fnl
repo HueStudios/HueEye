@@ -61,17 +61,20 @@
     (each [k v (pairs (widget.get-children))]
       (widget-manager.remove-widget v))))
 
-(lambda widget-manager.add-to-pipeline [pipeline-before pipeline-step pipeline-after top-down]
-  (local pipeline-data {:top-down top-down :to-run pipeline-step :before pipeline-before :after pipeline-after})
+(lambda widget-manager.add-to-pipeline [pipeline-before pipeline-step pipeline-after top-down update]
+  (local pipeline-data {:top-down top-down :to-run pipeline-step :before pipeline-before :after pipeline-after :update update})
   (tset widget-pipeline (+ 1 (# widget-pipeline)) pipeline-data))
 
-(fn widget-manager.widget-pipeline []
+(fn widget-manager.widget-pipeline [update]
   (each [k v (ipairs widget-pipeline)]
-    (v.before))
+    (when (= v.update update)
+      (v.before)))
   (each [k v (ipairs widget-pipeline)]
-    (if v.top-down
-      (run-on-children-top-down (widget-manager.get-master-widget) v.to-run)
-      (run-on-children-down-top (widget-manager.get-master-widget) v.to-run)))
+    (when (= v.update update)
+      (if v.top-down
+        (run-on-children-top-down (widget-manager.get-master-widget) v.to-run)
+        (run-on-children-down-top (widget-manager.get-master-widget) v.to-run))))
   (each [k v (ipairs widget-pipeline)]
-    (v.after)))
+    (when (= v.update update)
+      (v.after))))
 widget-manager

@@ -11,8 +11,9 @@
 (local my-button (button 100 100 200 50 nil "Fire missiles!"))
 
 
-(fn love.update [dt])
+(fn love.update [dt]
+  (widget-manager.widget-pipeline true))
 
 (fn love.draw []
   (love.graphics.clear (/ 36 255) (/ 36 255) (/ 36 255))
-  (widget-manager.widget-pipeline))
+  (widget-manager.widget-pipeline false))

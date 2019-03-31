@@ -112,6 +112,6 @@
   (set mouse-manager.previous-mouse-y mouse-manager.current-mouse-y)
   (set mouse-manager.previous-mouse-buttons mouse-manager.current-mouse-buttons))
 
-(widget-manager.add-to-pipeline mouse-manager.before-widgets mouse-manager.widget-step mouse-manager.after-widgets false)
+(widget-manager.add-to-pipeline mouse-manager.before-widgets mouse-manager.widget-step mouse-manager.after-widgets false true)
 
 mouse-manager
