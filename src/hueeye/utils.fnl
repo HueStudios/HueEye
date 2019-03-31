@@ -10,12 +10,12 @@
 (fn utils.empty [])
 (lambda utils.decorate-after [original decoration]
   (fn new-function [...]
-    (original ...)
-    (decoration ...))
+    (original (unpack arg))
+    (decoration (unpack arg)))
   new-function)
 (lambda utils.decorate-before [original decoration]
   (fn new-function [...]
-    (decoration ...)
-    (original ...))
+    (decoration (unpack arg))
+    (original (unpack arg)))
   new-function)
 utils
