@@ -8,4 +8,14 @@
     (set result (.. result this-character)))
   result)
 (fn utils.empty [])
+(lambda utils.decorate-after [original decoration]
+  (fn new-function [...]
+    (original ...)
+    (decoration ...))
+  new-function)
+(lambda utils.decorate-before [original decoration]
+  (fn new-function [...]
+    (decoration ...)
+    (original ...))
+  new-function)
 utils

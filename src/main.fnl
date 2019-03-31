@@ -13,6 +13,7 @@
   (my-button.set-enabled false))
 
 (fn love.update [dt]
+  (print (/ 1 dt))
   (widget-manager.widget-pipeline true))
 
 (fn love.draw []
