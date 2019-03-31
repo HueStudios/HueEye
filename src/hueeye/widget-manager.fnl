@@ -25,7 +25,9 @@
   new-id)
 
 (lambda run-on-children-top-down [widget to-be-run]
-  (var stop (to-be-run widget))
+  (var stop false)
+  (when (widget.get-enabled)
+    (set stop (to-be-run widget)))
   (each [k v (pairs (widget.get-children))]
     (when (not stop)
       (set stop (or stop (run-on-children-top-down v to-be-run)))))
@@ -36,7 +38,7 @@
   (each [k v (pairs (widget.get-children))]
     (when (not stop)
       (set stop (or stop (run-on-children-down-top v to-be-run)))))
-  (when (not stop)
+  (when (and (not stop) (widget.get-enabled))
     (set stop (or stop (to-be-run widget))))
   stop)
 

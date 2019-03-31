@@ -9,7 +9,8 @@
 (local my-panel (panel 10 10 200 50))
 (local my-text (text 10 10 200 50 "Hello World"))
 (local my-button (button 100 100 200 50 nil "Fire missiles!"))
-
+(fn my-button.on-action []
+  (my-button.set-enabled false))
 
 (fn love.update [dt]
   (widget-manager.widget-pipeline true))

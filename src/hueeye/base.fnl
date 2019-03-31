@@ -1,5 +1,11 @@
 (fn base [?parent]
-  (var base-widget {:_parent nil :_children {} :_id nil})
+  (var base-widget {:_parent nil :_children {} :_id nil :_enabled true})
+  (fn base-widget.get-enabled []
+    base-widget._enabled)
+  (lambda base-widget.set-enabled [enabled]
+    (set base-widget._enabled enabled)
+    (each [k v (pairs (base-widget.get-children))]
+      (v.set-enabled enabled)))
   (fn base-widget.get-parent []
     base-widget._parent)
   (lambda base-widget.set-parent [parent]
