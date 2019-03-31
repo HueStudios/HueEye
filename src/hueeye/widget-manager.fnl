@@ -6,7 +6,7 @@
 ;; Private
 
 (local ID-LENGTH 8)
-(local master-widget (drawable 0 0 {:master true} color-scheme.invisible))
+(local master-widget (drawable 0 0 {:master true} color-scheme.INVISIBLE-COLOR))
 (master-widget.set-id :00000000)
 (var widgets {:00000000 master-widget})
 

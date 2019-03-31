@@ -1,7 +1,7 @@
 (local rectangular (require :hueeye.rectangular))
 (local color-scheme (require :hueeye.color-scheme))
 (fn panel [x y width height ?parent]
-  (local panel-color color-scheme.container)
+  (local panel-color color-scheme.CONTAINER-COLOR)
   (local panel-widget (rectangular x y width height ?parent panel-color))
   (fn draw-panel []
     (local w (panel-widget.get-width))

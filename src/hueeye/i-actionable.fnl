@@ -3,8 +3,8 @@
 (fn [target-widget]
   (when (not target-widget.is-clickable)
     (i-clickable target-widget))
-  (set target-widget._hover-color color-scheme.actionable-hover)
-  (set target-widget._drag-color color-scheme.actionable-drag)
+  (set target-widget._hover-color color-scheme.ACTIONABLE-HOVER-COLOR)
+  (set target-widget._drag-color color-scheme.ACTIONABLE-DRAG-COLOR)
   (lambda target-widget.set-hover-color [new-color]
     (set target-widget._hover-color new-color))
   (fn target-widget.get-hover-color []

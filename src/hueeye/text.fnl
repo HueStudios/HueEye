@@ -1,7 +1,7 @@
 (local rectangular (require :hueeye.rectangular))
 (local color-scheme (require :hueeye.color-scheme))
 (lambda text [x y width height text ?parent ?align]
-  (local text-color color-scheme.text)
+  (local text-color color-scheme.TEXT-COLOR)
 
   (local text-widget (rectangular x y width height ?parent text-color))
 

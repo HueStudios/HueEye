@@ -3,7 +3,7 @@
 (local color-scheme (require :hueeye.color-scheme))
 (local text (require :hueeye.text))
 (lambda button [x y width height ?parent ?text]
-  (local button-color color-scheme.button-color)
+  (local button-color color-scheme.BUTTON-COLOR)
   (local button-widget (rectangular x y width height ?parent button-color))
   (i-actionable button-widget)
   (fn draw-button []
@@ -18,7 +18,7 @@
   (button-widget.add-before-draw draw-button)
   (when ?text
     (set button-widget._text-widget (text 0 0 width height ?text button-widget))
-    
+
     (fn button-widget.get-text-widget []
       button-widget._text-widget)
     (lambda button-widget.set-text-widget [new-text-widget]
