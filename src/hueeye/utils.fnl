@@ -21,7 +21,7 @@
 
 (var current-stencil-depths 0)
 
-(lambda utils.add-mask [mask-function]
+(fn utils.add-mask [mask-function]
   (set current-stencil-depths (+ 1 current-stencil-depths))
   (love.graphics.stencil mask-function :increment 1 true))
 
