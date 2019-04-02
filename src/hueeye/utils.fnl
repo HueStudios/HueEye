@@ -45,14 +45,14 @@
     (set stop (to-be-run widget)))
   (each [k v (pairs (widget.get-children))]
     (when (not stop)
-      (set stop (or stop (run-on-children-top-down v to-be-run)))))
+      (set stop (or stop (utils.run-on-children-top-down v to-be-run)))))
   stop)
 
 (lambda utils.run-on-children-down-top [widget to-be-run]
   (var stop false)
   (each [k v (pairs (widget.get-children))]
     (when (not stop)
-      (set stop (or stop (run-on-children-down-top v to-be-run)))))
+      (set stop (or stop (utils.run-on-children-down-top v to-be-run)))))
   (when (and (not stop) (widget.get-enabled))
     (set stop (or stop (to-be-run widget))))
   stop)
