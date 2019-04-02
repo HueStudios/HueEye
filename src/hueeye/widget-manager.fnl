@@ -24,23 +24,7 @@
     (set new-id (generate-valid-id)))
   new-id)
 
-(lambda run-on-children-top-down [widget to-be-run]
-  (var stop false)
-  (when (widget.get-enabled)
-    (set stop (to-be-run widget)))
-  (each [k v (pairs (widget.get-children))]
-    (when (not stop)
-      (set stop (or stop (run-on-children-top-down v to-be-run)))))
-  stop)
 
-(lambda run-on-children-down-top [widget to-be-run]
-  (var stop false)
-  (each [k v (pairs (widget.get-children))]
-    (when (not stop)
-      (set stop (or stop (run-on-children-down-top v to-be-run)))))
-  (when (and (not stop) (widget.get-enabled))
-    (set stop (or stop (to-be-run widget))))
-  stop)
 
 ;; Public
 
@@ -74,8 +58,8 @@
   (each [k v (ipairs widget-pipeline)]
     (when (= v.update update)
       (if v.top-down
-        (run-on-children-top-down (widget-manager.get-master-widget) v.to-run)
-        (run-on-children-down-top (widget-manager.get-master-widget) v.to-run))))
+        (utils.run-on-children-top-down (widget-manager.get-master-widget) v.to-run)
+        (utils.run-on-children-down-top (widget-manager.get-master-widget) v.to-run))))
   (each [k v (ipairs widget-pipeline)]
     (when (= v.update update)
       (v.after))))

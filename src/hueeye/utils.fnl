@@ -38,4 +38,23 @@
     (love.graphics.rectangle :fill 0 0 width height))
   (love.graphics.stencil stencil-function :replace 0)
   (set current-stencil-depths 0))
+
+(lambda utils.run-on-children-top-down [widget to-be-run]
+  (var stop false)
+  (when (widget.get-enabled)
+    (set stop (to-be-run widget)))
+  (each [k v (pairs (widget.get-children))]
+    (when (not stop)
+      (set stop (or stop (run-on-children-top-down v to-be-run)))))
+  stop)
+
+(lambda utils.run-on-children-down-top [widget to-be-run]
+  (var stop false)
+  (each [k v (pairs (widget.get-children))]
+    (when (not stop)
+      (set stop (or stop (run-on-children-down-top v to-be-run)))))
+  (when (and (not stop) (widget.get-enabled))
+    (set stop (or stop (to-be-run widget))))
+  stop)
+
 utils
