@@ -39,22 +39,26 @@
   (love.graphics.stencil stencil-function :replace 0)
   (set current-stencil-depths 0))
 
-(lambda utils.run-on-children-top-down [widget to-be-run]
+(lambda utils.run-on-children-top-down [widget to-be-run ?arguments]
   (var stop false)
+  (when (not ?arguments)
+    (var ?arguments {}))
   (when (widget.get-enabled)
-    (set stop (to-be-run widget)))
+    (set stop (to-be-run widget (unpack ?arguments))))
   (each [k v (pairs (widget.get-children))]
     (when (not stop)
-      (set stop (or stop (utils.run-on-children-top-down v to-be-run)))))
+      (set stop (or stop (utils.run-on-children-top-down v to-be-run ?arguments)))))
   stop)
 
-(lambda utils.run-on-children-down-top [widget to-be-run]
+(lambda utils.run-on-children-down-top [widget to-be-run ?arguments]
+  (when (not ?arguments)
+    (var ?arguments {}))
   (var stop false)
   (each [k v (pairs (widget.get-children))]
     (when (not stop)
-      (set stop (or stop (utils.run-on-children-down-top v to-be-run)))))
+      (set stop (or stop (utils.run-on-children-down-top v to-be-run ?arguments)))))
   (when (and (not stop) (widget.get-enabled))
-    (set stop (or stop (to-be-run widget))))
+    (set stop (or stop (to-be-run widget (unpack arguments)))))
   stop)
 
 utils
